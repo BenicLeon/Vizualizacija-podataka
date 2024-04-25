@@ -1,0 +1,77 @@
+<!doctype html>
+<html lang="en">
+
+  <head>
+  <style>
+
+  </style>
+    <script src="https://d3js.org/d3.v3.min.js"></script>
+  </head>
+  <body>
+  <script>
+  
+  var margin = {top: 20, bottom: 70, left:40, right: 20};
+  var width = 500;
+  var height = 500;
+  
+  var data = [{x: 110, y:200},{x: 210, y:210},{x: 310, y:200}];
+  var data1 = [{x: 110, y:200},{x: 210, y:350},{x: 310, y:200}];
+  var dataBall = {x: 210, y:174};
+  var dataBall1 = {x: 210, y:275};
+  
+  var svg = d3.select("body")
+    .append("svg")
+      .attr("width", width)
+      .attr("height", height)
+      .style("background-color", "lightblue");
+
+var valueline = d3.svg.line()
+    .interpolate("basis")
+    .x(function(d, i) { return d.x; })
+    .y(function(d) { return d.y; });
+
+
+  var linechart = svg.append("path")
+      .attr("class", "line")
+      .attr("d", valueline(data))
+      .style("stroke", "blue")
+      .attr("fill", "none")
+      ;
+  var ball = svg.append("circle")
+  .attr("cx", dataBall.x)
+  .attr("cy", dataBall.y-250)
+  .attr("r", 25)
+ .style("fill", "blue");
+
+var flag = true;
+  function trans() {
+    var cur_data = flag ? data1 : data;
+    var cur_dataBall = flag ? dataBall1 : dataBall;
+    
+    linechart.transition()
+      .delay(250)
+      .duration(flag ? 250 : 550)
+      .attr("d", valueline(cur_data))
+      .ease(flag ? "fade-out" : "elastic");
+
+  if (flag) { ball.transition()
+      .duration(250)
+      .attr("cx", cur_dataBall.x)
+      .attr("cy", dataBall.y)
+      .ease("circle");
+      }
+    
+    ball.transition()
+      .delay(250)
+      .duration(flag ? 250 : 250)
+      .attr("cx", cur_dataBall.x)
+      .attr("cy", cur_dataBall.y - (flag ? 0 : 250))
+      .ease(flag ? "fade-out" : "fade-out")
+      .each("end", trans);
+      flag = !flag;
+
+  }
+  //setInterval(trans, 1000);
+  trans();
+</script>
+  </body>

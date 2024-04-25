@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+ <head>
+<script src="http://d3js.org/d3.v3.min.js" charset="utf-8"></script>
+ </head>
+ <body>
+<script>
+	d3.select("body")
+	.insert("h1")
+	.html("Naslov dokumenta");
+	
+	var div1 = d3.select("body")
+	.append("div")
+	.attr("id", "ID1");
+	
+	div1.append("h2")
+	.html("Podnaslov 1");
+	
+	div1
+	.append("p")
+	.html ("Tekst 1");
+	
+	var div2 = d3.select("body")
+	.append("div")
+	.attr("id", "ID2");
+	
+	div2
+	.append("h2")
+	.html("Podnaslov 2");
+	
+	div2
+	.append("p")
+	.html ("Tekst 2");
+	
+	d3.select("#ID1").select("p")
+	.html("Novi tekst 1");
+	
+	d3.select("#ID2").select("p")
+	.html("Novi tekst 2");
+	
+</script>
+ </body>
+</html>

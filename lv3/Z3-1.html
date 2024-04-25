@@ -1,0 +1,48 @@
+<!doctype html>
+<html lang="en">
+
+  <head>
+  <style>
+#rect2 {
+    -webkit-transform-origin: 300px 150px;
+}
+  </style>
+    <script src="https://d3js.org/d3.v3.min.js"></script>
+  </head>
+  <body>
+  <script>
+  
+  var margin = {top: 20, bottom: 70, left:40, right: 20};
+  var width = 500;
+  var height = 500;
+  
+  var svg = d3.select("body")
+    .append("svg")
+      .attr("width", width)
+      .attr("height", height)
+      .style("background-color", "lightblue");
+
+var rect1 = svg.append("rect")
+  .attr("x", 100)
+  .attr("y", 100)
+  .attr("width", 150)
+  .attr("height", 100)
+  .style("fill", "none")
+    .style("stroke", "blue")
+    .style("opacity", 0.5)
+    ;
+
+var rect2 = svg.append("rect")
+  .attr("id", "rect2")
+  .attr("x", 100)
+  .attr("y", 100)
+  .attr("width", 150)
+  .attr("height", 100)
+  .style("fill", "none")
+    .style("stroke", "blue")
+//    .transition()
+//      .duration(2500)
+    .attr("transform", "rotate(45 175,150)");
+
+</script>
+  </body>
